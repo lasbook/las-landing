@@ -68,7 +68,7 @@
     .Landing_Content_Box {
       max-width: 800px;
       margin: 0 auto;
-      padding-top: 62px;
+      padding-top: 112px; /* 상단바 62px + 추가 margin 50px */
     }
 
     .Landing_Content_Box img {
@@ -103,8 +103,8 @@
 
   <!-- 콘텐츠 -->
   <div class="Landing_Content_Box">
-    <!-- 영상 (01.png 위에) -->
-    <video autoplay muted loop playsinline>
+    <!-- 영상 (01.png 위에) - playbackRate JS로 1.5배속 -->
+    <video id="main_video" autoplay muted loop playsinline>
       <source src="first.mp4" type="video/mp4" />
     </video>
     <img src="01.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
@@ -118,6 +118,12 @@
   </div>
 
   <script>
+    // 영상 재생속도 설정 (1.5 = 1.5배속, 2.0 = 2배속)
+    var video = document.getElementById('main_video');
+    video.addEventListener('loadedmetadata', function() {
+      video.playbackRate = 1.5;
+    });
+
     function Taget_move_slide() {
       var target = document.getElementById('form_location');
       if (!target) return;
