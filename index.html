@@ -62,17 +62,23 @@
       .Layer_Top_Follow_Length .Landing_Button_Box { margin: 10px; }
     }
 
-    /* bg_color_box1 = #1562CF (원본) */
     .bg_color_box1 { background-color: #1562CF; }
 
     /* ── 본문 ── */
     .Landing_Content_Box {
       max-width: 800px;
       margin: 0 auto;
-      padding-top: 62px; /* 상단바 높이 (25px 폰트 + padding 20px + border) */
+      padding-top: 62px;
     }
 
     .Landing_Content_Box img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── 비디오 ── */
+    .Landing_Content_Box video {
       width: 100%;
       height: auto;
       display: block;
@@ -85,7 +91,7 @@
 </head>
 <body>
 
-  <!-- 상단 고정 탭바 (원본 구조/클래스 동일) -->
+  <!-- 상단 고정 탭바 -->
   <div class="Layer_Top_Follow_Box" id="Top_lay_follow_box">
     <div class="Layer_Top_Follow_Length">
       <div class="Landing_Title_Box"> LAS  시니어 인턴기자 모집  AI 교육 안내 </div>
@@ -95,8 +101,12 @@
     </div>
   </div>
 
-  <!-- 이미지 콘텐츠 -->
+  <!-- 콘텐츠 -->
   <div class="Landing_Content_Box">
+    <!-- 영상 (01.png 위에) -->
+    <video autoplay muted loop playsinline>
+      <source src="first.mp4" type="video/mp4" />
+    </video>
     <img src="01.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
     <img src="02.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
     <img src="03.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
