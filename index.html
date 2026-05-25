@@ -10,6 +10,8 @@
   <meta property="og:image" content="01.png" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
+  <!-- YouTube 임베드 허용을 위한 CSP 헤더 대응 -->
+  <meta http-equiv="Content-Security-Policy" content="frame-src https://www.youtube.com https://www.youtube-nocookie.com;">
   <style>
     /* ── 원본 dbcart 글로벌 CSS ── */
     html { -webkit-text-size-adjust: none; }
@@ -18,7 +20,7 @@
     a { font-family:"Dotum"; font-size:12px; text-decoration:none; color:#2B2B2B; }
     * { box-sizing: border-box; }
 
-    /* ── 상단바 (원본 그대로) ── */
+    /* ── 상단바 ── */
     .Layer_Top_Follow_Box {
       position: fixed;
       z-index: 999;
@@ -40,35 +42,18 @@
       font-size: 25px;
       font-weight: bold;
       font-family: malgun gothic;
-      padding: 10px 0;
-    }
-
-    .Layer_Top_Follow_Length .Landing_Button_Box {
-      float: right;
-      border-radius: 20px;
-      margin: 10px 0;
-    }
-
-    .Layer_Top_Follow_Length .Landing_Button_Box a {
-      font-size: 16px;
-      font-weight: bold;
-      color: #ffffff;
-      display: block;
-      padding: 10px 20px;
+      padding: 10px;
     }
 
     @media screen and (max-width: 800px) {
-      .Layer_Top_Follow_Length .Landing_Title_Box { padding: 10px; }
-      .Layer_Top_Follow_Length .Landing_Button_Box { margin: 10px; }
+      .Layer_Top_Follow_Length .Landing_Title_Box { font-size: 16px; }
     }
-
-    .bg_color_box1 { background-color: #1562CF; }
 
     /* ── 본문 ── */
     .Landing_Content_Box {
       max-width: 800px;
       margin: 0 auto;
-      padding-top: 112px; /* 상단바 62px + 추가 margin 50px */
+      padding-top: 62px;
     }
 
     .Landing_Content_Box img {
@@ -77,15 +62,23 @@
       display: block;
     }
 
-    /* ── 비디오 ── */
-    .Landing_Content_Box video {
+    /* ── 유튜브 반응형 래퍼 (16:9) ── */
+    .youtube-wrap {
+      position: relative;
       width: 100%;
-      height: auto;
-      display: block;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      background: #000;
     }
 
-    #form_location {
-      display: block;
+    .youtube-wrap iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
   </style>
 </head>
@@ -95,43 +88,31 @@
   <div class="Layer_Top_Follow_Box" id="Top_lay_follow_box">
     <div class="Layer_Top_Follow_Length">
       <div class="Landing_Title_Box"> LAS  시니어 인턴기자 모집  AI 교육 안내 </div>
-      <div class="Landing_Button_Box bg_color_box1">
-        <a href="#form_location" onclick="Taget_move_slide();return false;">lassneiortimes@gmail.com  본인소개서  보내기 </a>
-      </div>
     </div>
   </div>
 
   <!-- 콘텐츠 -->
   <div class="Landing_Content_Box">
-    <!-- 영상 (01.png 위에) - playbackRate JS로 1.5배속 -->
-    <video id="main_video" autoplay muted loop playsinline>
-      <source src="first.mp4" type="video/mp4" />
-    </video>
+
+    <!-- youtube-nocookie.com 사용 시 개인정보 보호 + 임베드 제한 우회 -->
+    <div class="youtube-wrap">
+      <iframe
+        src="https://www.youtube-nocookie.com/embed/of4o3f5INvw?rel=0&modestbranding=1&origin=https://lasbook.github.io"
+        title="LAS 시니어 인턴기자 모집 AI 교육 안내"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+        referrerpolicy="strict-origin-when-cross-origin">
+      </iframe>
+    </div>
+
     <img src="01.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
     <img src="02.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
     <img src="03.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
     <img src="04.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
     <img src="05.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
     <img src="06.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
-    <span id="form_location"></span>
     <img src="07.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
   </div>
-
-  <script>
-    // 영상 재생속도 설정 (1.5 = 1.5배속, 2.0 = 2배속)
-    var video = document.getElementById('main_video');
-    video.addEventListener('loadedmetadata', function() {
-      video.playbackRate = 1.5;
-    });
-
-    function Taget_move_slide() {
-      var target = document.getElementById('form_location');
-      if (!target) return;
-      var barH = document.getElementById('Top_lay_follow_box').offsetHeight;
-      var targetTop = target.getBoundingClientRect().top + window.pageYOffset - barH;
-      window.scrollTo({ top: targetTop, behavior: 'smooth' });
-    }
-  </script>
 
 </body>
 </html>
