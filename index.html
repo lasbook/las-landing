@@ -10,10 +10,8 @@
   <meta property="og:image" content="01.png" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
-  <!-- YouTube 임베드 허용을 위한 CSP 헤더 대응 -->
   <meta http-equiv="Content-Security-Policy" content="frame-src https://www.youtube.com https://www.youtube-nocookie.com;">
   <style>
-    /* ── 원본 dbcart 글로벌 CSS ── */
     html { -webkit-text-size-adjust: none; }
     body { margin:0; padding:0; font-size:12px; font-family: Dotum, sans-serif; color:#2B2B2B; background:#fff; }
     div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, form, fieldset, p, button { margin:0; padding:0; }
@@ -49,11 +47,10 @@
       .Layer_Top_Follow_Length .Landing_Title_Box { font-size: 16px; }
     }
 
-    /* ── 본문 ── */
+    /* ── 본문 (padding-top은 JS로 동적 설정) ── */
     .Landing_Content_Box {
       max-width: 800px;
       margin: 0 auto;
-      padding-top: 62px;
     }
 
     .Landing_Content_Box img {
@@ -62,7 +59,7 @@
       display: block;
     }
 
-    /* ── 유튜브 반응형 래퍼 (16:9) ── */
+    /* ── 유튜브 반응형 16:9 ── */
     .youtube-wrap {
       position: relative;
       width: 100%;
@@ -92,9 +89,8 @@
   </div>
 
   <!-- 콘텐츠 -->
-  <div class="Landing_Content_Box">
+  <div class="Landing_Content_Box" id="Landing_Content_Box">
 
-    <!-- youtube-nocookie.com 사용 시 개인정보 보호 + 임베드 제한 우회 -->
     <div class="youtube-wrap">
       <iframe
         src="https://www.youtube-nocookie.com/embed/of4o3f5INvw?rel=0&modestbranding=1&origin=https://lasbook.github.io"
@@ -113,6 +109,19 @@
     <img src="06.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
     <img src="07.png" alt="LAS 시니어 인턴기자 모집 AI 교육 안내" />
   </div>
+
+  <script>
+    function adjustTopPadding() {
+      var bar = document.getElementById('Top_lay_follow_box');
+      var content = document.getElementById('Landing_Content_Box');
+      content.style.paddingTop = bar.offsetHeight + 'px';
+    }
+
+    // 로드 시 + 리사이즈 시 (폰트 로딩 후에도 정확히 측정)
+    adjustTopPadding();
+    window.addEventListener('resize', adjustTopPadding);
+    window.addEventListener('load', adjustTopPadding);
+  </script>
 
 </body>
 </html>
