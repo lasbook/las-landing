@@ -18,7 +18,6 @@
     a { font-family:"Dotum"; font-size:12px; text-decoration:none; color:#2B2B2B; }
     * { box-sizing: border-box; }
 
-    /* ── 상단바 ── */
     .Layer_Top_Follow_Box {
       position: fixed;
       z-index: 999;
@@ -47,7 +46,6 @@
       .Layer_Top_Follow_Length .Landing_Title_Box { font-size: 16px; }
     }
 
-    /* ── 본문 (padding-top은 JS로 동적 설정) ── */
     .Landing_Content_Box {
       max-width: 800px;
       margin: 0 auto;
@@ -59,7 +57,6 @@
       display: block;
     }
 
-    /* ── 유튜브 반응형 16:9 ── */
     .youtube-wrap {
       position: relative;
       width: 100%;
@@ -81,19 +78,17 @@
 </head>
 <body>
 
-  <!-- 상단 고정 탭바 -->
   <div class="Layer_Top_Follow_Box" id="Top_lay_follow_box">
     <div class="Layer_Top_Follow_Length">
       <div class="Landing_Title_Box"> LAS  시니어 인턴기자 모집  AI 교육 안내 </div>
     </div>
   </div>
 
-  <!-- 콘텐츠 -->
   <div class="Landing_Content_Box" id="Landing_Content_Box">
 
     <div class="youtube-wrap">
       <iframe
-        src="https://www.youtube-nocookie.com/embed/of4o3f5INvw?rel=0&modestbranding=1&origin=https://lasbook.github.io"
+        src="https://www.youtube-nocookie.com/embed/u50Ey4Plz9A?rel=0&modestbranding=1&origin=https://lasbook.github.io"
         title="LAS 시니어 인턴기자 모집 AI 교육 안내"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         allowfullscreen
@@ -116,8 +111,6 @@
       var content = document.getElementById('Landing_Content_Box');
       content.style.paddingTop = bar.offsetHeight + 'px';
     }
-
-    // 로드 시 + 리사이즈 시 (폰트 로딩 후에도 정확히 측정)
     adjustTopPadding();
     window.addEventListener('resize', adjustTopPadding);
     window.addEventListener('load', adjustTopPadding);
